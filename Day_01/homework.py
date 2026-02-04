@@ -1,8 +1,8 @@
 print("This is miles to kilometers converter and vice versa")
 
 # User input
-miles_input = input("\nEnter miles to convert")
-kilometers_input = input("Enter kilometers to convert")
+miles_input = float(input("\nEnter miles to convert: "))
+kilometers_input = float(input("Enter kilometers to convert: "))
 
 # Conversion
 miles_to_km = miles_input * 1.60934
