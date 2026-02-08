@@ -11,7 +11,9 @@ control = None
 
 if initiate == "y":
     control = True
+    
     while control == True:
+
         # Get user input:
         player_choice: str = input('\nChoose rock (🪨), paper (📄), or scissors (✂️): ').strip().lower()
         computer_choice: str = random.choice(tuple(symbols))
