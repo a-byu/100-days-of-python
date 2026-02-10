@@ -1,15 +1,25 @@
 # 1. Get the user input for the total bill amount
 print('\nWelcome to Expense Splitter™!')
-total_bill: float = float(input('1. Enter the total bill you would like to split: '))
+total_bill = input('1. Enter the total bill you would like to split: ')
+bill_str = str(total_bill)
 
-while not total_bill:
-    total_bill: float = float(input('1. Enter the total bill you would like to split: '))
-    if not total_bill:
-        print("Input cannot be empty. Try again.")
+while bill_str == '':
+    total_bill = input('\n1. Enter the total bill you would like to split: ')
+    bill_str = str(total_bill)
+    if not bill_str == '':
+        break
+
+while bill_str == '0':
+    total_bill = input('\n1. You can not enter 0 damnit!. please try again: ')
+    bill_str = str(total_bill)
+    if not bill_str == '0':
+        break
+
+bill_float = float(bill_str)
 
 # 2. Add the participants to the bill
 people: list[str] = []
-print('2. Add participants (press Enter on an empty line when finished):')
+print('\n2. Add participants (press Enter on an empty line when finished):')
 while True:
     input_name: str = input('Name: ').lower()
     if input_name.strip() == '':
@@ -22,7 +32,7 @@ while True:
         people.append(input_name)
 
 # 3. Splitting the bill
-print('3. Now, specify the percentage each person will pay.')
+print('\n3. Now, specify the percentage each person will pay.')
 print('(Type "even" at any time to split the bill equally.)')
 
 # Create a dictionary that holds how much each person owes
@@ -40,10 +50,10 @@ for person in people:
     # Typing 'even' will split the bill evenly
     if percent_input.strip() == 'even':
         for nested_person in people:
-            people_dict[nested_person] = (1 / len(people)) * total_bill
+            people_dict[nested_person] = (1 / len(people)) * bill_float
         break
 
-    people_dict[person] = (float(percent_input) / 100) * total_bill
+    people_dict[person] = (float(percent_input) / 100) * bill_float
     total_percent -= float(percent_input)
 
 # 4. Display the information
